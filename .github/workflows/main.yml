@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # Push events on main/master branch
-      - main
+      - master
 # Series of steps
 jobs:
   CI:
