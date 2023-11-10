@@ -50,11 +50,12 @@ jobs:
         # Step 6: Create the file of dependencies
       - name: Create dependencies
         run: /
-          cd ./venv/lib/python3.7/site-packages zip -r9 ../../../../api.zip
+          cd ./venv/lib/python3.7/site-packages
+          zip -r9 ../../../../api.zip .
 
         # Step 6: for the pipelines of aws with s3
       - name: Add api to zip file
-        run: cd ./api && zip -g ../api/zip -r .
+        run: cd ./api && zip -g ../api.zip -r .
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
