@@ -62,3 +62,33 @@ jobs:
         with:
           name: src
           path: src.zip
+
+  CD:
+    runs-on: ubuntu-latest
+    needs: [ CI ]
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    steps:
+      - name: Install aws cli
+        uses: unfor19/install-aws-cli-action@v1
+        with:
+          version: 1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Download lambda src.zip
+        uses: actions/download-artifact@v2
+        with:
+          name: src
+      - name: Upload to AWS S3
+        run: aws s3 cp src.zpi s3://api-employees-demo-339/src.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Deploy on Lambda
+        run: aws lambda update-function-code --function-name api-emloyees-demo --s3-bucket api-employees-demo-339 --s3-key src.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
