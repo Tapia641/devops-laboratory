@@ -81,7 +81,7 @@ jobs:
         with:
           name: src
       - name: Upload to AWS S3
-        run: aws s3 cp src.zpi s3://api-employees-demo-339/src.zip
+        run: aws s3 cp src.zip s3://api-employees-demo-339/src.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
