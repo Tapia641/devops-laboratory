@@ -17,7 +17,6 @@ from src.main import app
 from bson import ObjectId
 
 
-
 class TestUsersEmployees:
     # Crea un cliente de prueba
     client = TestClient(app)
@@ -38,11 +37,11 @@ class TestUsersEmployees:
         db = db_client.test.employees
         _user = None
         with patch.object(db_client.test.employees, "find_one") as mock_find_one:
-            #STEP 1
+            # STEP 1
             # mock_find_one.return_value = search_user_by_field("email", user.email)
             # _user = search_user_by_field("email", user.email)
 
-            #STEP 2
+            # STEP 2
             mock_find_one.return_value = search_user_by_field("_id", ObjectId(user.id))
             _user = search_user_by_field("_id", ObjectId(user.id))
 

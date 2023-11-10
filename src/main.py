@@ -14,6 +14,12 @@ app = FastAPI()
 # app.include_router(auth_users.router)
 app.include_router(users_db.router)
 
+
+@app.get("/")
+async def check_status():
+    return {"message": "Hello, I am alive"}
+
+
 handler = Mangum(app=app)
 
 # RECURSOS STATICOS
