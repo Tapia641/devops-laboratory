@@ -74,7 +74,7 @@ jobs:
           version: 1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Download lambda src.zip
         uses: actions/download-artifact@v2
@@ -84,11 +84,11 @@ jobs:
         run: aws s3 cp src.zpi s3://api-employees-demo-339/src.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Deploy on Lambda
         run: aws lambda update-function-code --function-name api-emloyees-demo --s3-bucket api-employees-demo-339 --s3-key src.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
