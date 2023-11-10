@@ -4,6 +4,7 @@ from mangum import Mangum
 from src.routers import users_db
 
 # INICIAR API
+# UPDATING
 app = FastAPI()
 
 # ROUTERS
