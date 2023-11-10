@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from mangum import Mangum
 # import the classes
 from src.routers import users_db
 
@@ -12,6 +12,8 @@ app = FastAPI()
 # app.include_router(jwt_auth.router)
 # app.include_router(auth_users.router)
 app.include_router(users_db.router)
+
+handler = Mangum(app=app)
 
 # RECURSOS STATICOS
 # app.mount(path="/static/", name="static", app=StaticFiles(directory="static"))
