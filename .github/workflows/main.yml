@@ -20,7 +20,7 @@ jobs:
         # Configure the env
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
           # Optional the architecture
 
         # Step 2: Install the venv
