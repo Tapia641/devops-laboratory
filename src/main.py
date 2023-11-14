@@ -28,7 +28,6 @@ handler = Mangum(app=app)
 # def initialize_routers():
 #     # Routers
 #
-#
 # uvicorn main:app --reload
 # uvicorn src.main:app --reload
 
