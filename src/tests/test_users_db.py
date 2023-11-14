@@ -11,7 +11,7 @@ from src.routers.users_db import search_user_by_field
 
 import pytest
 
-from main import app
+from src.main import app
 
 
 # Object ID
