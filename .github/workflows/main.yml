@@ -40,12 +40,12 @@ jobs:
 
         # Step 4: Build the venv
       - name: Source the venv
-        run: python -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+        run: python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
 
         # Step 5: Run our tests
       - name: Running Tests
         # Remember activate the venv
-        run: . venv/bin/activate && pytest -vvv
+        run: source venv/bin/activate && pytest -v
 
         # Step 6: Create the file of dependencies
       - name: Create dependencies
